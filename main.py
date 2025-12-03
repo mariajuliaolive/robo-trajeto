@@ -1,5 +1,5 @@
-# 100% prontoooo
-
+# certo
+#focar nesse aqui 100000$
 
 import traceback
 import time
