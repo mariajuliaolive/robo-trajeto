@@ -1,0 +1,486 @@
+[
+    {
+        "id": "e4c05a140456ca3b",
+        "type": "tab",
+        "label": "Husky Robot Monitor",
+        "disabled": false,
+        "info": "Painel de telemetria para o robô Husky simulado no PyBullet."
+    },
+    {
+        "id": "f696c24dc41db633",
+        "type": "mqtt in",
+        "z": "e4c05a140456ca3b",
+        "name": "Recebe Telemetria",
+        "topic": "robot/telemetria",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "62c202ea038df2ed",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 240,
+        "wires": [
+            [
+                "478e4360a627f1d0",
+                "d02bace3f3de59c8",
+                "e72db7f02ef79d41",
+                "5be0e60ca04ddcf2",
+                "0f93d793c460b739",
+                "d4b7ce2db7c07567",
+                "b47082bd66191265",
+                "49f36dad104d2e95"
+            ]
+        ]
+    },
+    {
+        "id": "478e4360a627f1d0",
+        "type": "debug",
+        "z": "e4c05a140456ca3b",
+        "name": "Ver JSON",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "4770642ec847e8d2",
+        "type": "ui_text",
+        "z": "e4c05a140456ca3b",
+        "group": "0d0f390f2603a3d3",
+        "order": 1,
+        "width": 6,
+        "height": 2,
+        "name": "Status Atual",
+        "label": "Status do Robô",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 610,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "d02bace3f3de59c8",
+        "type": "change",
+        "z": "e4c05a140456ca3b",
+        "name": "Extrair Status",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.status",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 160,
+        "wires": [
+            [
+                "4770642ec847e8d2"
+            ]
+        ]
+    },
+    {
+        "id": "333a84654a47b359",
+        "type": "ui_text",
+        "z": "e4c05a140456ca3b",
+        "group": "0d0f390f2603a3d3",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "Colisões",
+        "label": "Colisões:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 600,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "e72db7f02ef79d41",
+        "type": "change",
+        "z": "e4c05a140456ca3b",
+        "name": "Extrair Colisões",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.colisoes",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 200,
+        "wires": [
+            [
+                "333a84654a47b359"
+            ]
+        ]
+    },
+    {
+        "id": "f09dc884cc28f3fb",
+        "type": "ui_gauge",
+        "z": "e4c05a140456ca3b",
+        "name": "Motor Esq",
+        "group": "b12f39983a2f4b4c",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Motor Esquerdo",
+        "label": "vel",
+        "format": "{{value}}",
+        "min": "-15",
+        "max": "15",
+        "colors": [
+            "#ca3838",
+            "#e6e600",
+            "#55c758"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 610,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "5be0e60ca04ddcf2",
+        "type": "change",
+        "z": "e4c05a140456ca3b",
+        "name": "Motor L",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.motor[0]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 280,
+        "wires": [
+            [
+                "f09dc884cc28f3fb"
+            ]
+        ]
+    },
+    {
+        "id": "da0e8a5efd54c67a",
+        "type": "ui_gauge",
+        "z": "e4c05a140456ca3b",
+        "name": "Motor Dir",
+        "group": "b12f39983a2f4b4c",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Motor Direito",
+        "label": "vel",
+        "format": "{{value}}",
+        "min": "-15",
+        "max": "15",
+        "colors": [
+            "#ca3838",
+            "#e6e600",
+            "#55c758"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 600,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "0f93d793c460b739",
+        "type": "change",
+        "z": "e4c05a140456ca3b",
+        "name": "Motor R",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.motor[1]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 320,
+        "wires": [
+            [
+                "da0e8a5efd54c67a"
+            ]
+        ]
+    },
+    {
+        "id": "d55a232eb23327f3",
+        "type": "ui_gauge",
+        "z": "e4c05a140456ca3b",
+        "name": "Sensor Esq",
+        "group": "78b9f2f4d282cc17",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "donut",
+        "title": "Esquerda",
+        "label": "m",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "8",
+        "colors": [
+            "#cc0000",
+            "#e6e600",
+            "#5cd65c"
+        ],
+        "seg1": "1.5",
+        "seg2": "4",
+        "className": "",
+        "x": 610,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "d4b7ce2db7c07567",
+        "type": "change",
+        "z": "e4c05a140456ca3b",
+        "name": "Sensor L",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.sensores[0]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 400,
+        "wires": [
+            [
+                "d55a232eb23327f3"
+            ]
+        ]
+    },
+    {
+        "id": "cfe17093c9860c9a",
+        "type": "ui_gauge",
+        "z": "e4c05a140456ca3b",
+        "name": "Sensor Centro",
+        "group": "78b9f2f4d282cc17",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "donut",
+        "title": "Frente",
+        "label": "m",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "8",
+        "colors": [
+            "#cc0000",
+            "#e6e600",
+            "#5cd65c"
+        ],
+        "seg1": "1.5",
+        "seg2": "4",
+        "className": "",
+        "x": 620,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "b47082bd66191265",
+        "type": "change",
+        "z": "e4c05a140456ca3b",
+        "name": "Sensor C",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.sensores[1]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 440,
+        "wires": [
+            [
+                "cfe17093c9860c9a"
+            ]
+        ]
+    },
+    {
+        "id": "6df5099ce963d960",
+        "type": "ui_gauge",
+        "z": "e4c05a140456ca3b",
+        "name": "Sensor Dir",
+        "group": "78b9f2f4d282cc17",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "donut",
+        "title": "Direita",
+        "label": "m",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "8",
+        "colors": [
+            "#cc0000",
+            "#e6e600",
+            "#5cd65c"
+        ],
+        "seg1": "1.5",
+        "seg2": "4",
+        "className": "",
+        "x": 610,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "49f36dad104d2e95",
+        "type": "change",
+        "z": "e4c05a140456ca3b",
+        "name": "Sensor R",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.sensores[2]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 480,
+        "wires": [
+            [
+                "6df5099ce963d960"
+            ]
+        ]
+    },
+    {
+        "id": "62c202ea038df2ed",
+        "type": "mqtt-broker",
+        "name": "HiveMQ Public",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "0d0f390f2603a3d3",
+        "type": "ui_group",
+        "name": "Estado Geral",
+        "tab": "ad929c32fc687d40",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "b12f39983a2f4b4c",
+        "type": "ui_group",
+        "name": "Motores",
+        "tab": "ad929c32fc687d40",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "78b9f2f4d282cc17",
+        "type": "ui_group",
+        "name": "Sensores Distância",
+        "tab": "ad929c32fc687d40",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "ad929c32fc687d40",
+        "type": "ui_tab",
+        "name": "Husky Robot",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "1231f131a0aca07e",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6"
+        }
+    }
+]
