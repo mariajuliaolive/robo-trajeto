@@ -1,10 +1,6 @@
-Claro! Aqui está um **README.md completo, organizado, bonito e profissional**, já pensado para colocar no GitHub do seu projeto **Robô Móvel Diferencial com Evasão de Obstáculos + Node-RED + MQTT + PyBullet**.
 
-Se quiser, eu também posso gerar **versão em inglês**, **com imagens**, **com badges do GitHub**, ou **com GIF da simulação**.
 
----
-
-# 📌 **README.md — Robô Móvel com Evasão de Obstáculos (PyBullet + Node-RED + MQTT)**
+# 📌 ** Robô Móvel com Evasão de Obstáculos (PyBullet + Node-RED + MQTT)**
 
 ## 🤖 **Descrição do Projeto**
 
