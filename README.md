@@ -109,7 +109,7 @@ mosquitto
 ### 3️⃣ Rode a simulação
 
 ```bash
-python robot.py
+python main.py
 ```
 
 ### 4️⃣ Importe o fluxo no Node-RED
